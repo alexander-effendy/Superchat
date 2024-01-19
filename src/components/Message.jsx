@@ -1,21 +1,28 @@
 import React from 'react';
 
-const Message = () => {
+const Message = ({profile, img, msg, owner}) => {
+  const individualMessage = {
+    display: 'flex',
+    gap: '20px',
+    maxHeight: '240px',
+    flexDirection: owner ? 'row-reverse' : 'row',
+  }
+
   return (
-    <div style={styles.individualMessage}>
+    <div style={individualMessage}>
       <div style={styles.messageInfo}>
         <img 
           style={styles.senderProfile}
-          src="https://images.unsplash.com/photo-1524502397800-2eeaad7c3fe5?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8YmlraW5pJTIwZ2lybCUyMHNleHl8ZW58MHx8MHx8fDA%3D"
-          alt="bikini girl"
+          src={profile}
+          alt=""
         />
-        <span style={styles.messageSent}>just now</span>
+        {/* <span style={styles.messageSent}>just now</span> */}
       </div>
 
       <div style={styles.messageContent}>
         {/* either send a msg or an img */}
-        <p>hey!</p>
-        <img src="" alt="" />
+        <p>{msg}</p>
+        <img style={styles.imgSent} src={img} alt="" />
       </div>
       
     </div>
@@ -23,16 +30,10 @@ const Message = () => {
 }
 
 const styles = {
-  individualMessage: {
-    display: 'flex',
-    gap: '20px',
-    height: '10px',
-    marginBottom: '20px'
-  },
+  
   messageInfo: {
     display: 'flex',
     flexDirection: 'column',
-    backgroundColor: 'pink',
     alignItems: 'center',
     width: '20px'
   },
@@ -40,12 +41,23 @@ const styles = {
     width: '40px',
     height: '40px',
     borderRadius: '50%',
-    objectFit: 'cover'
+    objectFit: 'cover',
   },
   messageSent: {
     color: 'grey'
+  },
+  imgSent: {
+    maxHeight: '200px',
+    border: '0.5px solid grey'
+  },
+  messageContent: {
+    display: 'flex',
+    alignItems: 'center',
+    backgroundColor: '#90a3eb',
+    color: 'white',
+    borderRadius: '10px 0px 10px 10px',
+    padding: '0px 10px 0px 10px',
   }
-
 }
 
 export default Message;

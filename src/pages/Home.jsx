@@ -39,7 +39,8 @@ const styles = {
     backgroundColor: '#3e3c61',
   },
   chat: {
-    flex: 2
+    flex: 2,
+    overflowY: 'auto'
   }
 }
 
