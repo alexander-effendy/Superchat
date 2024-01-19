@@ -9,9 +9,7 @@ import { withStyles } from '@mui/material';
 const Input = () => {
   return (
     <div style={styles.inputContainer}>
-      <div style={styles.inputSpace}>
-        Type something here
-      </div>
+      <input style={styles.inputSpace} placeholder="Type something here" />
       <div style={styles.inputComponents}>
         <AttachFileIcon />
         <AddPhotoAlternateIcon />
@@ -32,6 +30,7 @@ const styles = {
   inputSpace: {
     color: 'grey',
     flex: 5,
+    border: 'none'
   },
   inputComponents: {
     flex: 1,

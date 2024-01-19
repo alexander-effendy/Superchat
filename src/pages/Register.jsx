@@ -1,7 +1,36 @@
 import React from 'react';
+
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../firebase";
+
+
+
 import AddPhotoIcon from '@mui/icons-material/AddPhotoAlternate';
 
 const Register = () => {
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const name = e.target[0].value;
+    const email = e.target[1].value;
+    const password = e.target[2].value;
+    const img = e.target[3].files[0];
+
+    
+
+    createUserWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        const user = userCredential.user;
+        console.log(user);
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        // ..
+      });
+
+  }
+
   return (
     <div style={styles.container}>
       <div style={styles.wrapper}>
@@ -10,7 +39,10 @@ const Register = () => {
           <span style={styles.oatmeal}>Oatmeal lover</span>
         </div>
         
-        <form style={styles.form}>
+        <form 
+          style={styles.form}
+          onSubmit={handleSubmit}
+        >
           <input style={styles.input} type="text" placeholder="full name (e.g. Smally Fenguin)" />
           <input style={styles.input} type="email" placeholder="emaill (e.g. small.fenguin@gmail.com" />
           <input style={styles.input} type="password" placeholder="password" />
@@ -19,7 +51,11 @@ const Register = () => {
             <AddPhotoIcon style={{ width: '20px' }} />
             <span style={styles.addAvatar}>Add an avatar</span>
           </label>
-          <button style={styles.button}>Sign up</button>
+          <button 
+            style={styles.button}
+          >
+            Sign up
+          </button>
         </form>
         
         <div style={styles.question}>Have an account? Login</div>
